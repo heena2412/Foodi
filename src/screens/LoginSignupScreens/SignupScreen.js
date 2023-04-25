@@ -209,12 +209,12 @@ const SignupScreen = ({ navigation }) => {
                     </TouchableOpacity>
 
 
-                    {/* <Text style={styles.forgot}>Forgot Password?</Text> */}
+                    {/* <Text style={styles.forgot}>Forgot Password?</Text>
                     <Text style={styles.or}>OR</Text>
-                    <Text style={styles.gftxt}>Sign In With </Text>
+                    <Text style={styles.gftxt}>Sign In With </Text> */}
 
 
-                    <View style={styles.gf}>
+                    {/* <View style={styles.gf}>
                         <TouchableOpacity>
                             <View style={styles.gficon}>
                                 <AntDesign name="google" size={24} color="#EA4335" />
@@ -225,7 +225,7 @@ const SignupScreen = ({ navigation }) => {
                             <View style={styles.gficon}>
                                 <FontAwesome5 name="facebook-f" size={24} color="#4267B2" /></View>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                     <View style={hr80}></View>
                     <Text >Already have an account?
                         <Text style={styles.signup} onPress={() => navigation.navigate('login')}> Sign In</Text>

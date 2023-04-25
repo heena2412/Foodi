@@ -94,7 +94,7 @@ const TrackOrders = ({ navigation }) => {
                                                         <Text style={styles.price1}>₹{item.data.foodAddonPrice}</Text>
                                                     </View>
                                                     <View style={styles.right}>
-                                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice)}</Text>
+                                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice) + 20}</Text>
                                                     </View>
                                                 </View>
                                             </View>

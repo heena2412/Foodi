@@ -1,8 +1,11 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View,Alert, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { btn1, colors, hr80, navbtn, navbtnin } from '../globals/style';
 import { firebase } from '../../Firebase/firebaseConfig';
 import { AntDesign } from '@expo/vector-icons';
+
+
+
 
 const Placeorder = ({ navigation, route }) => {
     const [orderdata, setOrderdata] = useState([]);
@@ -63,7 +66,7 @@ const Placeorder = ({ navigation, route }) => {
             foodprice.map((item) => {
                 // console.log(item.data.foodPrice)
                 totalfoodprice = (parseInt(item.data.foodPrice) * parseInt(item.Foodquantity)) +
-                    (parseInt(item.data.foodAddonPrice) * parseInt(item.Addonquantity)) + totalfoodprice;
+                    (parseInt(item.data.foodAddonPrice) * parseInt(item.Addonquantity)) + totalfoodprice ;
             })
             // console.log(totalfoodprice)
             setTotalCost(JSON.stringify(totalfoodprice))
@@ -88,7 +91,15 @@ const Placeorder = ({ navigation, route }) => {
             paymenttotal: totalCost
         })
         // navigation.navigate('home');
-        alert('Order Placed Successfully');
+        // alert('Order Placed Successfully');
+        Alert.alert(
+            'Order Placed😉',
+            'Click "Pay" to Continue',
+            [
+              
+              { text: 'Pay', onPress: () => { navigation.navigate('PaymentPage') } }
+            ]
+          );
         //navigation.navigate('trackorders');
     }
 
@@ -111,10 +122,11 @@ const Placeorder = ({ navigation, route }) => {
                                         <Text style={styles.qty}>{item.Foodquantity}</Text>
                                         <Text style={styles.title}>{item.data.foodName}</Text>
                                         <Text style={styles.price1}>₹{item.data.foodPrice}</Text>
-                                        
+
                                     </View>
                                     <View style={styles.right}>
                                         <Text style={styles.totalprice}>₹{parseInt(item.Foodquantity) * parseInt(item.data.foodPrice)}</Text>
+                                       
                                     </View>
                                 </View>
 
@@ -123,12 +135,12 @@ const Placeorder = ({ navigation, route }) => {
                                         <Text style={styles.qty}>{item.Addonquantity}</Text>
                                         <Text style={styles.title}>{item.data.foodAddon}</Text>
                                         <Text style={styles.price1}>₹{item.data.foodAddonPrice}</Text>
-                                        <Text style={styles.charges}>Delivery Charges{item.data.charges}</Text>
-                                        
+                                         <Text style={styles.charges}>+ ₹20 Delivery Charges  </Text> 
+
                                     </View>
                                     <View style={styles.right}>
-                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice)}</Text>
-                                    
+                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice) + 20}</Text>
+
                                     </View>
                                 </View>
                             </View>
@@ -143,7 +155,7 @@ const Placeorder = ({ navigation, route }) => {
                         <Text style={styles.title}>Order Total :</Text>
                     </View>
                     <View style={styles.left}>
-                        <Text style={styles.totalprice}>₹{totalCost}</Text>
+                        <Text style={styles.totalprice}>₹{parseInt(totalCost) + 20}</Text>
                     </View>
                 </View>
 
@@ -191,11 +203,13 @@ const Placeorder = ({ navigation, route }) => {
 
                 <View style={hr80}></View>
 
-                 <View >
+                <View >
                     <TouchableOpacity style={btn1}>
+                        {/* <Text style={styles.btntext} onPress={() => navigation.navigate('PaymentPage')}>Processed </Text> */}
                         <Text style={styles.btntext} onPress={() => placenow()}>Processed </Text>
+                        
                     </TouchableOpacity>
-                </View> 
+                </View>
             </View>
         </ScrollView>
     )
@@ -274,10 +288,12 @@ const styles = StyleSheet.create({
         color: colors.col1,
         margin: 10,
     },
-    charges:{
+    charges: {
         fontSize: 17,
         fontWeight: 'bold',
         marginRight: 10,
+        
+        
     }
 })
 

@@ -92,16 +92,19 @@ const TrackOrders = ({ navigation }) => {
                                                         <Text style={styles.qty}>{item.Addonquantity}</Text>
                                                         <Text style={styles.title}>{item.data.foodAddon}</Text>
                                                         <Text style={styles.price1}>₹{item.data.foodAddonPrice}</Text>
+                                                        <Text style={styles.charges}>+ ₹20 Delivery Charges  </Text> 
                                                     </View>
                                                     <View style={styles.right}>
-                                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice)}</Text>
+                                                        <Text style={styles.totalprice}>₹{parseInt(item.Addonquantity) * parseInt(item.data.foodAddonPrice) + 20}</Text>
                                                     </View>
                                                 </View>
                                             </View>
                                         )
                                     }
                                 } />
-                                <Text style={styles.total}>Total: ₹{order.ordercost}</Text>
+                                 {/* <Text style={styles.total }>Total: ₹{order.ordercost}</Text> */}
+                                <Text style={styles.total}>Total: ₹{parseInt(order.ordercost) + 20}</Text>
+                                
                                 {
                                     order.orderstatus === 'Delivered' ? <Text style={styles.ordertxt3}>Thank you for ordering with us</Text> : null
                                 }

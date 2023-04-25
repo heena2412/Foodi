@@ -16,6 +16,8 @@ import TrackOrders from './src/screens/TrackOrders';
 import PaymentPage from './src/screens/PaymentPage';
 import Upi from './src/screens/Upi';
 import CreditDebit from './src/screens/CreditDebit';
+//import CashOnDelivery from './src/screens/CashOnDelivery';
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -90,6 +92,13 @@ export default function App() {
             headerShown: false,
           }}
         />
+        {/* <Stack.Screen name="CashOnDelivery" component={CashOnDelivery}
+          options={{
+            headerShown: false,
+          }}
+        />
+         */}
+        
       </Stack.Navigator>
 
     </NavigationContainer>
